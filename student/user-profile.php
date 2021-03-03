@@ -12,18 +12,25 @@
                     </div>
                 </div>
                 <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+                <?php
+                  $id =  $_SESSION['student_id'];
+                  $result = mysqli_query($dbcon,"SELECT * FROM `students` WHERE  `id` = '$id'");
+                  $result = mysqli_fetch_assoc($result);
+                  // print_r($result);
 
+
+                 ?>
                 <div class="row">
                     <div class="col-md-6 col-lg-4">
                         <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
                         <!--PROFILE-->
                         <div>
                             <div class="profile-photo">
-                                <img alt="User photo" src="../assets/images/avatar/avatar_user.jpg">
+                                <img alt="User photo" src="../images/students/<?= isset($result['photo'])?$result['photo']:'avatar_user.jpg'?>">
                             </div>
                             <div class="user-header-info">
-                                <h2 class="user-name">Jane Doe</h2>
-                                <h5 class="user-position">UI Designer</h5>
+                                <h4 class="user-name"><?= ucwords($result['fname']).' '.ucwords($result['lname']) ?></h4>
+                                <h5 class="user-position">Students</h5>
                                 <div class="user-social-media">
                                     <span class="text-lg"><a href="#" class="fa fa-twitter-square"></a> <a href="#" class="fa fa-facebook-square"></a> <a href="#" class="fa fa-linkedin-square"></a> <a href="#" class="fa fa-google-plus-square"></a></span>
                                 </div>
@@ -35,8 +42,8 @@
                             <div class="panel-content">
                                 <h4 class=""><b>Contact Information</b></h4>
                                 <ul class="user-contact-info ph-sm">
-                                    <li><b><i class="color-primary mr-sm fa fa-envelope"></i></b> jane-doe@email.com</li>
-                                    <li><b><i class="color-primary mr-sm fa fa-phone"></i></b> (023) 234 2344</li>
+                                    <li><b><i class="color-primary mr-sm fa fa-envelope"></i></b> <?= $result['email'] ?></li>
+                                    <li><b><i class="color-primary mr-sm fa fa-phone"></i></b> <?= $result['phoneno'] ?></li>
                                     <li><b><i class="color-primary mr-sm fa fa-globe"></i></b> Helsinki, Finland</li>
                                     <li class="mt-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dolorem error itaque maxime minus saepe similique voluptatibus. Beatae cumque dolore doloribus impedit omnis porro tempore tenetur. Aperiam dolorum odio quo?</li>
                                 </ul>
