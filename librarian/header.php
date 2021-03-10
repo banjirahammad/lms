@@ -131,40 +131,6 @@
                                 <li class="<?= $page == 'issue-book.php'?'active-item':''  ?>"><a href="issue-book.php"><i class="fa fa-book" aria-hidden="true"></i><span>Issue Book</span></a></li>
                                 <li class="<?= $page == 'return_book.php'?'active-item':''  ?>"><a href="return_book.php"><i class="fa fa-book" aria-hidden="true"></i><span>Return Book</span></a></li>
                                 <!--PAGES-->
-                                <li class="has-child-item close-item">
-                                    <a><i class="fa fa-files-o" aria-hidden="true"></i><span>Pages</span></a>
-                                    <ul class="nav child-nav level-1">
-                                        <li><a href="pages_sign-in.html">Sign in</a></li>
-                                        <li><a href="pages_register.html">Register</a></li>
-                                        <li><a href="pages_lock-screen.html">Lock screen</a></li>
-                                        <li><a href="pages_forgot-password.html">Forgot password</a></li>
-                                        <li class="has-child-item close-item">
-                                            <a>Error pages</a>
-                                            <ul class="nav child-nav level-2 ">
-                                                <li><a href="pages_error-404-content.html">Error 404 content</a></li>
-                                                <li><a href="pages_error-404.html">Error 404 page</a></li>
-                                                <li><a href="pages_error-500.html">Error 500</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="pages_faq.html">FAQ</a></li>
-                                        <li><a href="pages_user-profile.html">User profile</a></li>
-                                        <li class="has-child-item close-item">
-                                            <a>Search results<span></a>
-                                            <ul class="nav child-nav level-2 ">
-                                                <li><a href="pages_search-results-list.html">List style</a></li>
-                                                <li><a href="pages_search-results-grid.html">Grid Style</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="has-child-item close-item">
-                                            <a>Projects<span></a>
-                                            <ul class="nav child-nav level-2 ">
-                                                <li><a href="pages_project-list.html">List</a></li>
-                                                <li><a href="pages_project-detail.html">Detail</a></li>
-                                            </ul>
-                                        </li>
-
-                                    </ul>
-                                </li>
 
                             </ul>
                         </nav>
