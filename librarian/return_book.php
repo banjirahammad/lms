@@ -5,12 +5,17 @@
                     $id = base64_decode($_GET['rq']);
                     $book_name = $_GET['qr'];
                     $date = date('d-m-Y');
-                    $book_qty = mysqli_query($dbcon,"SELECT * FROM `books` WHERE `book_name`= '$book_name'");
+
+                    $book_id = mysqli_query($dbcon,"SELECT * FROM `issue_books` WHERE `id`= '$id'");
+                    $book_id = mysqli_fetch_assoc($book_id);
+                    $book_id = $book_id['book_id'];
+
+                    $book_qty = mysqli_query($dbcon,"SELECT * FROM `books` WHERE `id`= '$book_id'");
                     $book_qty = mysqli_fetch_assoc($book_qty);
                     $up_qty = $book_qty['available_qty']+1;
 
                     $result = mysqli_query($dbcon,"UPDATE `issue_books` SET `book_return_date`='$date' WHERE `id` = '$id' ");
-                    $update_qty = mysqli_query($dbcon,"UPDATE `books` SET `available_qty`='$up_qty' WHERE `book_name`= '$book_name' ");
+                    $update_qty = mysqli_query($dbcon,"UPDATE `books` SET `available_qty`='$up_qty' WHERE `id`= '$book_id' ");
 
                     if ($result && $update_qty) { ?>
                       <script type="text/javascript">
@@ -34,7 +39,7 @@
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-home" aria-hidden="true"></i><a href="index.php">Dashboard</a></li>
-                            <li><a href="">Return Books</a></li>
+                            <li><a href="javascript:avoid(0)">Return Books</a></li>
                         </ul>
                     </div>
                 </div>

@@ -10,7 +10,6 @@
     $password = $_POST['password'];
 
     $input_error = array();
-
     if(empty($email)){
       $input_error['email'] = "* Email field is required";
     }
@@ -23,21 +22,28 @@
           $result = mysqli_fetch_assoc($email_check);
           if ($result['email']==$email) {
             if ($password==$result['password']) {
-              $_SESSION['librarian_login'] = $email;
-              $_SESSION['librarian_username'] = $result['username'];
-              header('location:index.php');
+              if ($result['status']==1) {
+                $_SESSION['librarian_login'] = $email;
+                $_SESSION['librarian_username'] = $result['username'];
+                header('location:index.php');
+              }else {
+                $error = "Accepting from Database Administrator or Mentainor ";
+              }
             }else {
-              $error = " Invalid Password";
+              $error = "Password Invalid";
             }
           }else {
-            $error = " Invalid Email";
+            $error = "This canditate are not registered";
           }
         }else {
-          $error = " This canditate are not registered";
+          $error = "This canditate are not registered";
         }
       }
     }
+
+
   }
+
 
  ?>
 
@@ -48,11 +54,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Librarian || Sign in</title>
-    <link rel="apple-touch-icon" sizes="120x120" href="../assets/favicon/apple-icon-120x120.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+    <title>LMS || Librarian Sign in</title>
+    <link rel="apple-touch-icon" sizes="120x120" href="../images/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../images/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon.png">
     <!--BASIC css-->
     <!-- ========================================================= -->
     <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">
@@ -123,7 +129,7 @@
                             <input class="btn btn-primary btn-block" type="submit" name="signin" value="Sign in">
                         </div>
                         <div class="form-group text-center">
-                            <a href="pages_forgot-password.html">Forgot password?</a>
+                            <a href="forgot-password.php">Forgot password?</a>
 
                         </div>
                     </form>

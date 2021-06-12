@@ -77,9 +77,12 @@
           $error = "This book already exist";
         }else {
           $submit = mysqli_query($dbcon,"INSERT INTO `books`(`book_name`, `book_edition`, `book_image`, `book_author_name`, `book_publication_name`, `book_purchase_date`, `book_price`, `book_qty`, `available_qty`, `librarian_username`) VALUES ('$book_name','$book_edition','$book_image','$author_name','$publication_name','$purchase_date','$book_price','$book_qty','$available_qty','$librarian_username')");
-          $img_upload = move_uploaded_file($_FILES['book_image']['tmp_name'],'../images/books/'.$book_image);
+          if (isset($submit)) {
+            $img_upload = move_uploaded_file($_FILES['book_image']['tmp_name'],'../images/books/'.$book_image);
+          }
           if (isset($submit) && isset($img_upload)) {
-            $success = "Succesfully! Add book";
+            $success = " Add book";
+
           }
           else {
             $error = " Something Wrong";
@@ -108,24 +111,41 @@
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-home" aria-hidden="true"></i><a href="index.php">Dashboard</a></li>
-                            <li></i><a href="">Add Books</a></li>
+                            <li></i><a href="javascript:avoid(0)">Add Books</a></li>
                         </ul>
                     </div>
                 </div>
-                <?php
-                  if (isset($success)) {
-                    echo '<div class="alert alert-success fade in col-sm-12 col-md-8 col-md-offset-2">
-                        <a href="#" class="close" data-dismiss="alert">×</a>
-                        <strong> </strong>'.$success.
-                    '</div>';
-                  }
-                  if (isset($error)) {
-                    echo '<div class="alert alert-danger fade in col-sm-12 col-md-8 col-md-offset-2">
-                        <a href="#" class="close" data-dismiss="alert">×</a>
-                        <strong>Sorry!</strong>'.$error.
-                    '</div>';
-                  }
-                ?>
+                <!-- ============================refesh icon start =====================================-->
+                <div class="row">
+                  <div class="col-12">
+                    <div class="pull-right">
+                      <a href="addbooks.php"><i class="fa fa-refresh" aria-hidden="true"></i> Refresh</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- ============================refesh icon end =====================================-->
+
+                <!-- =======================Notice Bord start ==================-->
+                <div class="row">
+                  <div class="col-sm-12 col-md-8 col-md-offset-2">
+                    <?php
+                      if (isset($success)) { ?>
+                        <div class="alert alert-success fade in">
+                            <a href="#" class="close" data-dismiss="alert">×</a>
+                            <strong>Succcessfully!!</strong><?= $success; ?>
+                        </div>
+
+                     <?php }
+                     if (isset($error)) { ?>
+                       <div class="alert alert-danger fade in ">
+                           <a href="#" class="close" data-dismiss="alert">×</a>
+                           <strong>Sorry!</strong><?= $error; ?>
+                       </div>;
+                      <?php } ?>
+                  </div>
+                </div>
+                <!-- =======================Notice Bord End ==================-->
+
                 <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
                 <div class="row animated fadeInDown">
                   <div class="col-sm-12 col-md-8 col-md-offset-2">
@@ -135,7 +155,7 @@
                           <div class="row">
                               <div class="col-md-12">
                                   <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                                      <h5 class="mb-lg">Add Books</h5>
+                                      <h2 class="mb-lg">Add Books</h2>
                                       <div class="form-group">
                                           <label for="book_name" class="col-sm-3  control-label">Book Name</label>
                                           <div class="col-sm-9">

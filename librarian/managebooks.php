@@ -7,7 +7,7 @@
                     <div class="leftside-content-header">
                         <ul class="breadcrumbs">
                             <li><i class="fa fa-home" aria-hidden="true"></i><a href="index.php">Dashboard</a></li>
-                            <li><a href="">Managebooks</a></li>
+                            <li><a href="javascript:avoid(0)">Managebooks</a></li>
                         </ul>
                     </div>
                 </div>
@@ -108,7 +108,7 @@
                                               }?>
                                             </td>
                                             <td>
-                                              <img alt="first photo" src="../images/books/<?= $row['book_image']?>" class="img-responsive mb-sm">
+                                              <img alt="book photo" src="../images/books/<?= $row['book_image']?>" class="img-responsive mb-sm">
                                             </td>
                                             <td><?= $row['book_author_name']?></td>
                                             <td><?= $row['book_publication_name']?></td>
@@ -120,7 +120,7 @@
                                               <!--INFO modal-->
                                               <a href="javascript:avoid(0)" class="btn btn-primary" data-toggle="modal" data-target="#book-<?= $row['id']?>"> <i class="fa fa-eye"></i> </a>
                                               <a href="" data-toggle="modal" data-target="#book-update-<?= $row['id']?>" class="btn btn-warning"> <i class="fa fa-edit"></i> </a>
-                                              <a href="delete.php?br=<?= base64_encode($row['id'])?>" class="btn btn-danger" onclick="return confirm('Are You Sure to delete this book')" > <i class="fa fa-trash-o"></i> </a>
+                                              <a href="delete.php?bookdelete=<?= base64_encode($row['id'])?> & bookimg=<?= $row['book_image']?>" class="btn btn-danger" onclick="return confirm('Are You Sure to delete this book')" > <i class="fa fa-trash-o"></i> </a>
                                             </td>
                                         </tr>
                                         <?php } ?>
@@ -274,100 +274,15 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="modal-info-label"><i class="fa fa-book"></i> Update Books Info</h4>
                             </div>
-                            <?php
-                            if (isset($_POST['update_book'])) {
-                              $book_name = $_POST['book_name'];
-                              $book_id = base64_decode($_POST['book_id']);
-                              $book_edition = $_POST['edition'];
-                              $author_name = $_POST['author_name'];
-                              $publication_name = $_POST['publication_name'];
-                              $purchase_date = $_POST['purchase_date'];
-                              $book_price = $_POST['book_price'];
-                              $book_qty = $_POST['book_qty'];
-                              $available_qty = $_POST['available_qty'];
 
-                              $input_error =array();
-                              if (empty($book_name)) {
-                                $input_error['book_name'] = "* This field is required";
-                              }
-                              if (empty($book_edition)) {
-                                $input_error['book_edition'] = "* This field is required";
-                              }
-                              if (empty($author_name)) {
-                                $input_error['author_name'] = "* This field is required";
-                              }
-                              if (empty($publication_name)) {
-                                $input_error['publication_name'] = "* This field is required";
-                              }
-                              if (empty($purchase_date)) {
-                                $input_error['purchase_date'] = "* This field is required";
-                              }
-                              if (empty($book_price)) {
-                                $input_error['book_price'] = "* This field is required";
-                              }else {
-                                if (!($book_price>=50 && $book_price<1001)) {
-                                  $input_error['book_price'] = "* Min price is 50 and maximum price 1000";
-                                }
-                              }
-
-                              if (empty($book_qty)) {
-                                $input_error['book_qty'] = "* This field is required";
-                              }else {
-                                if (!($book_qty>=0 && $book_qty<=250)) {
-                                  $input_error['book_qty'] = "* Max quentity 250";
-                                }
-                              }
-                              if (empty($available_qty)) {
-                                $input_error['available_qty'] = "* This field is required";
-                              }else {
-                                if (!($available_qty>=0 && $available_qty<=$book_qty)) {
-                                  $input_error['available_qty'] = "* Quantity not available";
-                                }
-                              }
-
-                              if (count($input_error)==0) {
-                                $check_result = mysqli_query($dbcon,"SELECT * FROM `books` WHERE `book_name` = '$book_name' AND `book_author_name` = '$author_name' AND `book_edition` = '$book_edition' ");
-
-                                $check_result = mysqli_num_rows($check_result);
-                                if ($check_result>0) {
-                                  // $error = "This book already exist";
-                                  $ssubmit = mysqli_query($dbcon,"UPDATE `books` SET `book_publication_name`='$publication_name',`book_purchase_date`='$purchase_date',`book_price`='$book_price',`book_qty`='$book_qty',`available_qty`='$available_qty' WHERE `id` = '$book_id'");
-                                  if ($ssubmit) { ?>
-                                    <script type="text/javascript">
-                                      alert('Bookinfo Upadate Succesfull!');
-                                      javascript:history.go(-1);
-                                    </script>
-                                  <?php }
-
-                                }else {
-                                  $submit = mysqli_query($dbcon,"UPDATE `books` SET `book_name`='$book_name',`book_edition`='$book_edition',`book_author_name`='$author_name',`book_publication_name`='$publication_name',`book_purchase_date`='$purchase_date',`book_price`='$book_price',`book_qty`='$book_qty',`available_qty`='$available_qty' WHERE `id` = '$book_id'");
-
-                                  if ($submit) { ?>
-                                    <script type="text/javascript">
-                                      alert('Bookinfo Upadate Succesfull!');
-                                      javascript:history.go(-1);
-                                    </script>
-                                  <?php }
-                                  else { ?>
-                                    <script type="text/javascript">
-                                      alert('Something Wrong Bookinfo not Upadate!!');
-                                    </script>
-                                  <?php }
-
-
-                                }
-
-                              }
-                            }
-                             ?>
                             <div class="modal-body">
-                              <form class="" action="" method="post" enctype="">
+                              <form class="" action="update-book.php" method="post" enctype="">
                                   <!-- <h5 class="mb-lg">Add Books</h5> -->
 
                                   <div class="form-group">
                                     <label for="book_name">Book Name</label>
                                     <input type="text" class="form-control" id="book_name" name="book_name" value="<?= $row['book_name']?>">
-                                    <input type="hidden" class="form-control" id="book-id" name="book_id" value="<?= base64_encode($row['id'])?>">
+                                    <input type="<?php echo "hidden"; ?>" class="form-control" id="book-id" name="book_id" value="<?= base64_encode($row['id'])?>">
                                     <?php
                                       if (isset($input_error['book_name'])) {
                                         echo '<span class="input_error">'.$input_error['book_name'].'</span>';

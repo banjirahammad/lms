@@ -3331,7 +3331,7 @@ html.error-404 body {
 
 .user-header-info {
   display: inline-block;
-  margin-left: 20px;
+  /* margin-left: 20px; */
 }
 
 .user-header-info .user-name {

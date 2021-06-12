@@ -11,6 +11,16 @@
                     </div>
                 </div>
                 <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+                <!-- ============================refesh icon start =====================================-->
+                <div class="row">
+                  <div class="col-12">
+                    <div class="pull-right">
+                      <a href="index.php"><i class="fa fa-refresh" aria-hidden="true"></i> Refresh</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- ============================refesh icon end =====================================-->
+
                 <!--SEARCHING, ORDENING & PAGING-->
                 <div class="row animated fadeInUp">
                     <div class="col-sm-12">

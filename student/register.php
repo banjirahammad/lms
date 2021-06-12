@@ -135,13 +135,29 @@
 <html lang="en" class="fixed accounts sign-in">
 
 <head>
+    <!-- =========================================================
+                        meta tag
+    ========================================================== -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Student Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="This is Library Management Project">
+    <meta name="author" content="Md. Banjir Ahammad(https://www.banjir-ahammad.com)">
+    <meta name="keywords" content="Banjir, banjir, Banjir Ahammad, benajir, web designer, web developer, freelancer">
+
+    <!-- =========================================================
+                         page title
+    ========================================================== -->
+    <title>LMS || Student Registration</title>
+
+    <!-- =========================================================
+                          faveicon
+    ========================================================== -->
+    <link rel="shortcut icon" href="../images/favicon.png" />
     <link rel="apple-touch-icon" sizes="120x120" href="../assets/favicon/apple-icon-120x120.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../images/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon.png">
+
     <!--BASIC css-->
     <!-- ========================================================= -->
     <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.css">

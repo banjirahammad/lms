@@ -2,29 +2,36 @@
 
 <?php
   if (isset($_POST['isseu_book'])) {
-
     $student_id = $_POST['student_id'];
     $book_id = $_POST['book_id'];
-    $book_issue_date = $_POST['issue_date'];
-
-    $book_qty = mysqli_query($dbcon,"SELECT * FROM `books` WHERE `id`= '$book_id'");
-    $book_qty = mysqli_fetch_assoc($book_qty);
-    $up_qty = $book_qty['available_qty']-1;
-    $update_qty = mysqli_query($dbcon,"UPDATE `books` SET `available_qty`='$up_qty' WHERE `id`= '$book_id' ");
-
-
-
-    $result = mysqli_query($dbcon,"INSERT INTO `issue_books`(`student_id`, `book_id`, `book_issue_date`) VALUES ('$student_id','$book_id','$book_issue_date')");
-    if ($result &&  $update_qty) { ?>
-      <script type="text/javascript">
-        alert('Book Issued Successfully!');
-      </script>
-    <?php  }
-    else { ?>
+    if ($book_id==0) { ?>
       <script type="text/javascript">
         alert('Sorry Book not Issue!');
       </script>
-    <?php }
+    <?php  }
+    else {
+      $book_issue_date = $_POST['issue_date'];
+
+      $book_qty = mysqli_query($dbcon,"SELECT * FROM `books` WHERE `id`= '$book_id'");
+      $book_qty = mysqli_fetch_assoc($book_qty);
+      $up_qty = $book_qty['available_qty']-1;
+      $update_qty = mysqli_query($dbcon,"UPDATE `books` SET `available_qty`='$up_qty' WHERE `id`= '$book_id' ");
+
+
+      $query = "INSERT INTO `issue_books` (`student_id`, `book_id`, `book_issue_date`, `book_return_date`) VALUES ('$student_id', '$book_id', '$book_issue_date', '')";
+
+      $result = mysqli_query($dbcon,$query);
+      if ($result &&  $update_qty) { ?>
+        <script type="text/javascript">
+          alert('Book Issued Successfully!');
+        </script>
+      <?php  }
+      else { ?>
+        <script type="text/javascript">
+          alert('Sorry Book not Issue!');
+        </script>
+      <?php }
+    }
   }
 
  ?>
@@ -41,6 +48,7 @@
                         </ul>
                     </div>
                 </div>
+
                 <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
                 <div class="row animated">
                     <div class="col-sm-12 col-lg-8 col-lg-offset-2 ">
@@ -88,7 +96,7 @@
                                                     <div class="form-group">
                                                       <label for="book_name">Book Name</label>
                                                       <select class="form-control" name="book_id" id="book_name">
-                                                        <option >Select Subject</option>
+                                                        <option value="0" >Select Subject</option>
                                                         <?php
                                                           $result = mysqli_query($dbcon,"SELECT * FROM `books` WHERE `available_qty`>0");
                                                           while ($row = mysqli_fetch_assoc($result)) {

@@ -1,0 +1,58 @@
+.user-header-info {
+   margin-left: 0px;
+}
+.col-md-6 .h325,.col-lg-8 .h325{
+   font-size: 25px;
+}
+.col-md-6 .your-info .form-group .label25,.col-lg-8 .your-info .form-group .label25{
+   font-size: 20px;
+}
+.col-md-6 .your-info .form-group input ,.col-lg-8 .your-info .form-group input{
+   font-size: 18px;
+}
+.col-md-6 .your-info .form-group textarea ,.col-lg-8 .your-info .form-group textarea{
+   font-size: 18px;
+}
+.UserPhotoView #cngimg .form-group input{
+  background: transparent;
+}
+
+
+
+.bookPhotoView .img-thumbnail{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    padding: 5px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+.bookPhotoView hr, .book-info hr{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 3px solid #6d6b6b;
+}
+.book-info .label25{
+  font-size: 20px;
+}
+.book-info .p20{
+  font-size: 18px;
+  padding-left: 15px;
+}
+.book-info .titlewithname{
+  margin-bottom: 17px;
+}
+
+
+
+.font200{
+  color: white;
+  font-weight: 700;
+  font-size: 65px;
+}

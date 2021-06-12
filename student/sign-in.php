@@ -135,7 +135,7 @@
                             <input class="btn btn-primary btn-block" type="submit" name="signin" value="Sign in">
                         </div>
                         <div class="form-group text-center">
-                            <a href="pages_forgot-password.html">Forgot password?</a>
+                            <a href="forgot-password.php">Forgot password?</a>
                             <hr/>
                              <span>Don't have an account?</span>
                             <a href="register.php" class="btn btn-block mt-sm">Register</a>
