@@ -1,1 +1,1 @@
-this project is simple librari management project
+this project is simple library management project
